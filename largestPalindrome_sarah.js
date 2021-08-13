@@ -29,9 +29,10 @@ exports.getLargestPalindrome = (N) => {
 
   // iterate through range of multiplicands
   for (let i = max_value; i >= min_value; i--) {
-      
     if (i ** 2 < largestPalindrome) { break; }
+
     for (let j = i; j >= min_value; j--) {
+      if (i * j < largestPalindrome) { break; }
 
       // check if the product is a palindrome
       if (isPalindrome(i * j)) {
@@ -41,6 +42,7 @@ exports.getLargestPalindrome = (N) => {
                   
           // update largest palindrome
           largestPalindrome = i * j;
+          console.log(i,j, largestPalindrome)
         }
         break
       } // end if
@@ -52,7 +54,7 @@ exports.getLargestPalindrome = (N) => {
 }
 
 // input
-const N = 5;
+const N = 7;
 
 // CHALLENGE: Can you optimize the algorithm above so that works for input values N=4, N=5, N=6 in a "reasonable" amount of time?
 
@@ -65,5 +67,7 @@ const N = 5;
 
 // execution
 console.time(exports.name)
+//let i = 999499
+//console.log(i ** 2 < 999000000999)
 console.log("result:", exports.getLargestPalindrome(N))
 console.timeEnd(exports.name)
